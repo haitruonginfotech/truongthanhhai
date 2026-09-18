@@ -1,0 +1,56 @@
+---
+import Icon from '../ui/Icon.astro';
+const stats = [
+  { value: 10, suffix: '+', label: 'Năm kinh nghiệm' },
+  { value: 500, suffix: '+', label: 'Dự án' },
+  { value: 1, suffix: 'k+', label: 'Khách hàng' },
+];
+const platforms = ['WordPress', 'OpenCart', 'Shopify'];
+const chipPosition = ['-left-4 top-6 sm:-left-12', '-right-3 top-1/2 sm:-right-10', 'bottom-4 -left-1 sm:-left-8'];
+---
+<section class="hero-section overflow-hidden" aria-labelledby="hero-title" data-hero>
+  <canvas class="hero-canvas h-full w-full" aria-hidden="true" data-hero-canvas></canvas>
+  <div class="site-container grid items-center gap-16 py-16 sm:py-20 lg:grid-cols-[1.25fr_1fr] lg:gap-10 lg:py-28">
+    <div>
+      <p class="section-eyebrow" data-hero-item>Bảo trì &amp; sửa lỗi website</p>
+      <h1 id="hero-title" class="mt-6 text-[clamp(2.6rem,5.6vw,4.5rem)] leading-[1.06] font-extrabold tracking-[-0.03em] sm:tracking-[-0.045em]" data-hero-item>
+        Nhanh. An toàn.<br /><span class="text-gradient">Ổn định.</span>
+      </h1>
+      <p class="mt-7 max-w-xl text-base leading-8 text-muted sm:text-lg" data-hero-item>
+        Chuyên <strong class="font-semibold text-ink">WordPress, OpenCart, Shopify.</strong>{" "}
+        Fix lỗi nhanh, tối ưu hiệu năng, giám sát bảo mật 24/7. Tập trung giữ website luôn ổn định, an toàn và hoạt động mượt mà mỗi ngày.
+      </p>
+      <div class="mt-9 flex flex-wrap items-center gap-4" data-hero-item>
+        <a href="#services" class="btn btn-primary">Khám phá dịch vụ <Icon name="arrow-right" /></a>
+        <a href="https://truongthanhhai.com/wp-content/uploads/2026/03/TRUONG-THANH-HAI-CV20260313.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" aria-label="Tải CV của Trương Thanh Hải (PDF, mở tab mới)">Tải CV <Icon name="download" /></a>
+      </div>
+      <dl class="mt-12 grid max-w-lg grid-cols-3 gap-4 border-t border-line pt-8 sm:gap-8" data-hero-item>
+        {stats.map(stat => (
+          <div class="flex flex-col-reverse">
+            <dt class="mt-1 text-xs leading-5 text-muted sm:text-sm">{stat.label}</dt>
+            <dd class="font-mono text-3xl font-medium tracking-tight text-accent sm:text-4xl"><span data-count={stat.value}>{stat.value}</span>{stat.suffix}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+    <figure class="relative mx-auto flex w-full max-w-[420px] flex-col items-center" data-hero-item>
+      <div class="relative w-[min(320px,72vw)]" data-portrait>
+        <div class="portrait-ring" aria-hidden="true" data-portrait-ring></div>
+        <div class="portrait-card overflow-hidden">
+          <img src="/images/truong-thanh-hai.webp" width="300" height="300" alt="Trương Thanh Hải" fetchpriority="high" decoding="async" class="aspect-square w-full -rotate-[4.3deg] scale-110 object-contain" />
+        </div>
+        <ul class="pointer-events-none" aria-label="Nền tảng chuyên môn">
+          {platforms.map((platform, index) => (
+            <li class:list={['hud-chip absolute', chipPosition[index]]} data-float>
+              <span class="hud-dot" aria-hidden="true"></span>{platform}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <figcaption class="mt-12 text-center">
+        <p class="text-base font-semibold tracking-tight">Trương Thanh Hải</p>
+        <p class="mt-1 font-mono text-xs tracking-wide text-muted">WordPress · OpenCart · Shopify</p>
+      </figcaption>
+    </figure>
+  </div>
+</section>

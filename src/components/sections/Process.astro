@@ -1,0 +1,33 @@
+---
+import Icon from '../ui/Icon.astro';
+const steps = [
+  { title: 'Gửi yêu cầu', icon: 'file-text' as const, description: 'Mô tả lỗi & gửi thông tin truy cập qua form, email hoặc Zalo.' },
+  { title: 'Kiểm tra & báo giá', icon: 'search' as const, description: 'Chẩn đoán chính xác, báo giá minh bạch trong 15–60 phút.' },
+  { title: 'Tiến hành sửa', icon: 'wrench' as const, description: 'Backup → sửa lỗi → kiểm thử kỹ trên môi trường staging.' },
+  { title: 'Bàn giao & theo dõi', icon: 'package-check' as const, description: 'Bàn giao, bảo hành 14 ngày, giám sát hoạt động website.' },
+];
+---
+<section id="process" class="grid-spotlight relative scroll-mt-28 overflow-hidden bg-page py-20 lg:py-28" aria-labelledby="process-title" data-grid-spotlight>
+  <div class="site-container">
+    <div class="mx-auto max-w-3xl text-center" data-reveal>
+      <p class="section-eyebrow">Quy trình</p>
+      <h2 id="process-title" class="section-title text-gradient mt-5">4 bước — minh bạch, nhanh chóng</h2>
+      <p class="mt-5 text-base leading-7 text-muted">Mọi thao tác đều backup trước khi sửa. Bạn luôn biết chúng tôi đang làm gì trên website của bạn.</p>
+    </div>
+    <div class="relative mt-14">
+      <span class="process-line hidden lg:block" aria-hidden="true" data-process-line></span>
+      <ol class="relative grid gap-5 sm:grid-cols-2 lg:grid-cols-4" data-stagger>
+        {steps.map((step, index) => (
+          <li class="glow-card spotlight-card flex flex-col items-start rounded-xl !bg-panel p-6" data-reveal>
+            <div class="flex w-full items-center justify-between">
+              <span class="process-number text-base tracking-widest text-muted" aria-hidden="true">0{index + 1}</span>
+              <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-accent" style="color: var(--on-accent)"><Icon name={step.icon} class="h-5 w-5" /></span>
+            </div>
+            <h3 class="mt-6 text-lg font-bold tracking-tight"><span class="sr-only">Bước {index + 1}: </span>{step.title}</h3>
+            <p class="mt-2 text-sm leading-6 text-muted">{step.description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>

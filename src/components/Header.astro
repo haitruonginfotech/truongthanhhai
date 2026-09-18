@@ -1,0 +1,40 @@
+---
+import BrandLogo from './ui/BrandLogo.astro';
+import Icon from './ui/Icon.astro';
+import { mainNavigation } from '../config/navigation';
+const home = Astro.url.pathname === '/';
+---
+<header class="site-header sticky top-0 z-30 border-b border-line" data-site-header>
+  <div class="site-container flex items-center justify-between gap-8">
+    <BrandLogo />
+    <div class="flex items-center gap-5 xl:gap-7">
+      <nav class="hidden items-center gap-6 xl:flex" aria-label="Menu chính">
+        {mainNavigation.map(item => item.enabled
+          ? <a class:list={['nav-link', { 'is-active': home && item.href === '/' }]} href={item.href} aria-current={home && item.href === '/' ? 'true' : undefined} data-nav-link>{item.label}</a>
+          : <span class="nav-link nav-pending" role="link" aria-disabled="true">{item.label}</span>)}
+      </nav>
+      <button class="theme-switch" type="button" role="switch" aria-checked="true" aria-label="Giao diện tối" title="Chuyển sang giao diện sáng" data-theme-toggle>
+        <span class="theme-switch-track" aria-hidden="true">
+          <Icon name="sun" class="theme-switch-icon theme-switch-sun" />
+          <Icon name="moon" class="theme-switch-icon theme-switch-moon" />
+          <span class="theme-switch-knob">
+            <Icon name="sun" class="theme-knob-sun" />
+            <Icon name="moon" class="theme-knob-moon" />
+          </span>
+        </span>
+      </button>
+      <details class="mobile-navigation relative xl:hidden" data-mobile-menu>
+        <summary class="icon-button" aria-label="Mở menu chính"><Icon name="menu" class="menu-open-icon" /><Icon name="close" class="menu-close-icon" /></summary>
+        <nav class="mobile-panel absolute right-0 top-14 w-[min(300px,calc(100vw-48px))] rounded-xl border border-line bg-panel p-3 shadow-xl" aria-label="Menu di động">
+          {mainNavigation.map(item => item.enabled
+            ? <a class:list={['nav-link block rounded-lg px-4 py-3', { 'is-active': home && item.href === '/' }]} href={item.href} aria-current={home && item.href === '/' ? 'true' : undefined} data-nav-link>{item.label}</a>
+            : <span class="nav-link nav-pending block px-4 py-3" role="link" aria-disabled="true">{item.label}</span>)}
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>
+<script>
+  import { setupHeader } from '../scripts/header';
+  setupHeader();
+</script>

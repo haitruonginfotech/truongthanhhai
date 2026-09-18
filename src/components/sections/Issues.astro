@@ -1,0 +1,35 @@
+---
+import Icon from '../ui/Icon.astro';
+const issues = [
+  { title: 'Website bị lỗi trắng trang', icon: 'triangle-alert' as const, description: 'White screen of death, lỗi 500, lỗi database connection.', time: 'Sửa trong 2–6h' },
+  { title: 'Lỗi plugin / module', icon: 'bug' as const, description: 'Xung đột phiên bản, module không hoạt động, lỗi sau khi cập nhật.', time: 'Sửa trong 4–12h' },
+  { title: 'Website chậm', icon: 'gauge' as const, description: 'Tối ưu Core Web Vitals, cache, hình ảnh, database, CDN.', time: 'Tối ưu trong 24–48h' },
+  { title: 'Bị hack / malware', icon: 'shield-alert' as const, description: 'Gỡ mã độc, khôi phục, hardening, cài firewall & giám sát 24/7.', time: 'Xử lý trong 6–24h' },
+  { title: 'Lỗi thanh toán / checkout', icon: 'credit-card' as const, description: 'Sửa lỗi cổng thanh toán, lỗi giỏ hàng, không nhận đơn.', time: 'Ưu tiên <4h' },
+  { title: 'Lỗi hiển thị / theme', icon: 'monitor-x' as const, description: 'Vỡ layout, lỗi responsive, lỗi Liquid/PHP template.', time: 'Sửa trong 6–24h' },
+];
+---
+<section id="issues" class="scroll-mt-28 bg-page py-20 lg:py-28" aria-labelledby="issues-title">
+  <div class="site-container">
+    <div class="mx-auto max-w-3xl text-center" data-reveal>
+      <p class="section-eyebrow">Sự cố thường gặp</p>
+      <h2 id="issues-title" class="section-title text-gradient mt-5">Bạn đã gặp những lỗi nào?</h2>
+    </div>
+    <ul class="mt-12 grid gap-4 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3 lg:gap-5" data-stagger>
+      {issues.map(issue => (
+        <li class="glow-card flex flex-col !bg-deep p-6" data-reveal>
+          <div>
+            <Icon name={issue.icon} class="h-10 w-10 text-danger" />
+          </div>
+          <h3 class="mt-6 text-lg font-bold tracking-tight">{issue.title}</h3>
+          <p class="mt-2 text-sm leading-6 text-muted">{issue.description}</p>
+          <p class="mt-auto pt-6"><span class="mono-badge"><Icon name="clock" class="h-3.5 w-3.5" />{issue.time}</span></p>
+        </li>
+      ))}
+    </ul>
+    <div class="glow-card mx-auto mt-12 flex max-w-3xl flex-col items-center gap-5 p-6 text-center sm:flex-row sm:p-7 sm:text-left" data-reveal>
+      <p class="text-sm leading-7 text-muted sm:text-base">Hầu hết các sự cố website mình đều có thể xử lý. Nếu chưa thấy trong danh sách — cứ gửi mình, mình vẫn hỗ trợ được.</p>
+      <a href="#contact" class="btn btn-primary shrink-0">Liên hệ <Icon name="arrow-right" /></a>
+    </div>
+  </div>
+</section>

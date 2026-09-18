@@ -1,0 +1,16 @@
+---
+interface Props { size?: 'header' | 'footer'; }
+const { size = 'header' } = Astro.props;
+const gradientId = `brand-gradient-${size}`;
+---
+<a class:list={['brand-link inline-flex shrink-0 items-center', `brand-link-${size}`]} href="/" aria-label="Trương Thanh Hải IT — Trang chủ">
+  <svg class="brand-logo" viewBox="0 0 162 200" width="162" height="200" aria-hidden="true" focusable="false" shape-rendering="geometricPrecision">
+    <defs>
+      <linearGradient id={gradientId} x1="0" y1="0" x2="162" y2="200" gradientUnits="userSpaceOnUse">
+        <stop offset="0" class="brand-stop-start" />
+        <stop offset="1" class="brand-stop-end" />
+      </linearGradient>
+    </defs>
+    <path fill={`url(#${gradientId})`} d="M 1,1 L 0,3 L 0,70 L 1,71 L 1,78 L 2,79 L 2,82 L 4,85 L 4,87 L 12,98 L 22,105 L 24,105 L 28,107 L 32,107 L 33,108 L 47,108 L 48,109 L 127,109 L 135,113 L 139,117 L 143,125 L 143,180 L 140,182 L 116,182 L 113,178 L 113,130 L 111,128 L 50,128 L 48,130 L 48,179 L 45,182 L 21,182 L 18,180 L 18,130 L 16,128 L 2,128 L 0,131 L 0,196 L 2,199 L 63,199 L 65,197 L 65,148 L 68,145 L 92,145 L 94,146 L 96,149 L 96,198 L 97,199 L 159,199 L 161,196 L 161,129 L 160,128 L 159,118 L 154,108 L 151,104 L 143,97 L 137,94 L 135,94 L 131,92 L 127,92 L 126,91 L 36,91 L 28,88 L 21,81 L 18,74 L 18,20 L 20,18 L 46,18 L 48,20 L 48,70 L 51,72 L 110,72 L 113,70 L 113,21 L 115,18 L 141,18 L 143,20 L 143,69 L 144,71 L 146,72 L 158,72 L 160,71 L 161,69 L 161,3 L 157,0 L 99,0 L 96,2 L 96,51 L 94,54 L 67,54 L 65,51 L 65,2 L 63,0 L 3,0 Z" />
+  </svg>
+</a>

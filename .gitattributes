@@ -1,0 +1,14 @@
+# Chuẩn hoá xuống dòng LF trong repo để build Linux (CI/hosting) và Windows cho kết quả giống nhau.
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# File nhị phân: không đổi xuống dòng, không diff text.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.pdf binary

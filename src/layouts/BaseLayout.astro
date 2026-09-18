@@ -1,0 +1,63 @@
+---
+import '@fontsource-variable/inter';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/500.css';
+import '../styles/global.css';
+import { site } from '../config/site';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FloatingActions from '../components/FloatingActions.astro';
+interface Props { title?: string; description?: string; noindex?: boolean; }
+const { title = site.title, description = site.description, noindex = false } = Astro.props;
+const indexable = import.meta.env.PUBLIC_INDEXABLE === 'true' && !noindex;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang={site.language} data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <script is:inline>
+      // Resolve the saved preference before the body paints. First visit is dark.
+      try {
+        document.documentElement.dataset.theme = localStorage.getItem('tth-theme') === 'light' ? 'light' : 'dark';
+      } catch { document.documentElement.dataset.theme = 'dark'; }
+      // Hide reveal targets only when motion will actually run; unhide if the motion bundle never boots.
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('motion');
+        setTimeout(() => { if (!document.documentElement.dataset.motionReady) document.documentElement.classList.remove('motion'); }, 2500);
+      }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0e1115" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={indexable ? 'index, follow' : 'noindex, nofollow'} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={site.locale} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Đến nội dung chính</a>
+    <Header />
+    <main id="main"><slot /></main>
+    <Footer />
+    <FloatingActions />
+    <script>
+      import { setupMotion } from '../scripts/motion';
+      import { setupGridSpotlights } from '../scripts/grid-spotlight';
+      import { setupContactForm } from '../scripts/contact-form';
+      import { setupFloatActions } from '../scripts/float-actions';
+      setupMotion();
+      setupGridSpotlights();
+      setupContactForm();
+      setupFloatActions();
+    </script>
+  </body>
+</html>

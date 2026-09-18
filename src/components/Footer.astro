@@ -1,0 +1,24 @@
+---
+import BrandLogo from './ui/BrandLogo.astro';
+import Icon from './ui/Icon.astro';
+import { footerServices, footerExplore, socialLinks } from '../config/navigation';
+---
+<footer class="site-footer grid-spotlight relative overflow-hidden border-t border-line bg-footer pt-14 sm:pt-16" data-grid-spotlight>
+  <div class="site-container">
+    <div class="footer-grid grid gap-x-12 gap-y-10 pb-10 sm:grid-cols-2 lg:grid-cols-[1.7fr_1fr_1fr_.75fr] lg:gap-x-16">
+      <div class="sm:col-span-2 lg:col-span-1">
+        <BrandLogo size="footer" />
+        <p class="mt-5 max-w-sm text-sm leading-6 text-muted">Dịch vụ bảo trì & sửa lỗi website chuyên WordPress, OpenCart, Shopify. Fix nhanh — ổn định — an toàn.</p>
+        <div class="mt-5 flex gap-2.5" aria-label="Mạng xã hội">
+          {socialLinks.map(social => social.href
+            ? <a class="social-link" href={social.href} aria-label={social.label} target="_blank" rel="noopener noreferrer"><Icon name={social.icon} /></a>
+            : <span class="social-link" role="link" aria-label={`${social.label} — chưa có liên kết`} aria-disabled="true"><Icon name={social.icon} /></span>)}
+        </div>
+      </div>
+      <div><h2 class="footer-title">Dịch vụ</h2><ul class="footer-list">{footerServices.map(label => <li><span>{label}</span></li>)}</ul></div>
+      <div><h2 class="footer-title">Khám phá</h2><ul class="footer-list">{footerExplore.map(label => <li><span>{label}</span></li>)}</ul></div>
+      <div><h2 class="footer-title">Hỗ trợ</h2><ul class="footer-list"><li><a href="/#contact">Liên hệ</a></li><li><a href="tel:+84938446465">Hotline 24/7</a></li><li><a href="mailto:haitruonginfotech@gmail.com">Gửi email</a></li></ul></div>
+    </div>
+    <p class="border-t border-line py-5 text-center text-xs leading-6 text-muted sm:text-sm">Copyright © 2024 <a class="font-semibold text-accent hover:underline" href="https://haitruongit.com/" target="_blank" rel="noopener noreferrer">Hai Truong IT</a>. All rights reserved.</p>
+  </div>
+</footer>

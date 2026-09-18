@@ -1,0 +1,31 @@
+---
+const faqs = [
+  { q: 'Hải IT hỗ trợ những nền tảng nào?', a: ['Mình chuyên sửa chữa và bảo trì website WordPress, OpenCart và Shopify. Ngoài ra, mình cũng hỗ trợ các hệ thống xây dựng bằng CodeIgniter, Laravel và JavaScript.'] },
+  { q: 'Thời gian sửa lỗi là bao lâu?', a: ['Hầu hết lỗi thông thường được xử lý trong vòng 24 giờ. Lỗi nghiêm trọng (website down, lỗi thanh toán) được ưu tiên xử lý trong 2-4 giờ làm việc.'] },
+  { q: 'Chi phí sửa website tính như thế nào?', a: ['Theo 2 cách:', '• Sửa theo yêu cầu (báo giá trước)', '• Bảo trì hàng tháng (phí cố định, không giới hạn số lần)'] },
+  { q: 'Không sửa được thì sao?', a: ['Cam kết hoàn tiền 100% nếu không khắc phục được lỗi. Không phí ẩn, không phí tư vấn nếu không thành công.'] },
+  { q: 'Có bảo hành sau khi sửa không?', a: ['Có. Mọi lỗi đã sửa được bảo hành 14 ngày. Nếu lỗi tái phát trong thời gian này, chúng tôi sửa miễn phí.'] },
+  { q: 'Làm việc với Hải IT như thế nào?', a: ['Gửi yêu cầu qua Zalo/Email → Nhận báo giá trong 30 phút → Đồng ý giá → Chúng tôi sửa → Kiểm tra và thanh toán.'] },
+];
+---
+<section id="faqs" class="scroll-mt-28 bg-page py-20 lg:py-28" aria-labelledby="faqs-title">
+  <div class="site-container">
+    <div class="mx-auto max-w-3xl text-center" data-reveal>
+      <p class="section-eyebrow">Câu hỏi thường gặp</p>
+      <h2 id="faqs-title" class="section-title text-gradient mt-5">Giải đáp thắc mắc của bạn</h2>
+      <p class="mt-5 text-base leading-7 text-muted">Mọi thông tin bạn cần biết trước khi sử dụng dịch vụ sửa chữa website</p>
+    </div>
+    <div class="mx-auto mt-12 max-w-3xl lg:mt-14" data-stagger>
+      {faqs.map((faq, index) => (
+        <details class="faq-item border-b border-line" open={index === 0} data-reveal data-faq>
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-5">
+            <h3 class="text-base font-semibold sm:text-[17px]">{faq.q}</h3>
+            <svg class="faq-plus h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14" /><path class="faq-plus-v" d="M12 5v14" /></svg>
+          </summary>
+          <div class="pb-6 text-[15px] leading-7 text-muted" data-faq-body>{faq.a.map(line => <p>{line}</p>)}</div>
+        </details>
+      ))}
+    </div>
+    <p class="mt-10 text-center text-[15px] text-muted" data-reveal>Vẫn còn thắc mắc? <a href="#contact" class="font-semibold text-accent hover:underline">Liên hệ trực tiếp</a></p>
+  </div>
+</section>

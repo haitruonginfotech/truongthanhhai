@@ -1,0 +1,46 @@
+---
+import Icon from '../ui/Icon.astro';
+const services = [
+  {
+    platform: 'WordPress', icon: 'wordpress' as const,
+    description: 'Cập nhật core, plugin, theme an toàn. Fix lỗi xung đột plugin, tối ưu tốc độ LCP/CLS, quét & gỡ malware, sao lưu tự động.',
+    features: ['Update core/plugin/theme an toàn', 'Tối ưu Core Web Vitals', 'Quét malware & backup hằng ngày'],
+  },
+  {
+    platform: 'OpenCart', icon: 'opencart' as const,
+    description: 'Xử lý lỗi module, sửa lỗi checkout, tối ưu tốc độ truy vấn database, nâng cấp phiên bản, chỉnh sửa theme ổn định.',
+    features: ['Fix lỗi module & extension', 'Tối ưu DB & cache', 'Xử lý lỗi thanh toán / checkout'],
+  },
+  {
+    platform: 'Shopify', icon: 'shopify' as const,
+    description: 'Sửa lỗi theme Liquid, khắc phục xung đột app, tối ưu UX storefront, xử lý bug checkout và hiệu suất mobile.',
+    features: ['Fix theme Liquid, section, block', 'Khắc phục xung đột app', 'Tối ưu UX & tốc độ storefront'],
+  },
+];
+---
+<section id="services" class="grid-spotlight relative scroll-mt-28 overflow-hidden bg-footer py-20 lg:py-28" aria-labelledby="services-title" data-grid-spotlight>
+  <div class="site-container relative">
+    <div class="mx-auto max-w-3xl text-center" data-reveal>
+      <p class="section-eyebrow">Dịch vụ cốt lõi</p>
+      <h2 id="services-title" class="section-title text-gradient mt-5">Bảo trì chuyên sâu các nền tảng nổi bật</h2>
+    </div>
+    <div class="mt-12 grid gap-5 lg:mt-16 lg:grid-cols-3 lg:gap-6" data-stagger>
+      {services.map(service => (
+        <article class="glow-card spotlight-card beam-card flex flex-col !bg-panel p-6 sm:p-8" data-reveal>
+          <div class="mb-8">
+            <span class="icon-tile h-14 w-14"><Icon name={service.icon} class="h-7 w-7" /></span>
+          </div>
+          <h3 class="text-2xl font-bold tracking-tight">{service.platform} <span class="mt-1 block font-mono text-xs font-normal tracking-wider text-accent uppercase">Maintenance</span></h3>
+          <p class="mt-5 text-[15px] leading-7 text-muted">{service.description}</p>
+          <ul class="mt-6 space-y-3 border-t border-line pt-6 text-sm leading-6">
+            {service.features.map(feature => <li class="flex items-start gap-3"><Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-accent" /><span>{feature}</span></li>)}
+          </ul>
+          <div class="mt-auto pt-8">
+            <a href={`mailto:haitruonginfotech@gmail.com?subject=${encodeURIComponent('Tư vấn ' + service.platform + ' Maintenance')}`} class="btn btn-primary w-full justify-between" aria-label={`Liên hệ qua email về ${service.platform} Maintenance`}>Liên hệ tư vấn <Icon name="arrow-right" /></a>
+          </div>
+        </article>
+      ))}
+    </div>
+    <p class="mx-auto mt-12 max-w-2xl text-center font-mono text-sm leading-7 text-muted" data-reveal>// Tập trung 100% vào việc giữ website của bạn chạy ổn định — nhanh và an toàn.</p>
+  </div>
+</section>
